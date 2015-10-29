@@ -10,11 +10,14 @@ Template.postForm.events({
         // stop the form from submitting
         event.preventDefault();
 
-        Posts.insert({
+        var newPost = {
             title: event.target.title.value,
             url: event.target.url.value
-        });
+        };
+
         template.find("form").reset();
+
+        Meteor.call("addPost", newPost);
     }
 
 });
